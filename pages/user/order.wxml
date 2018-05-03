@@ -1,0 +1,234 @@
+<!--pages/user/order.wxml-->
+<!--todo:滚动-->
+<view class="page">
+  <view class="page__bd">
+    <view class="swiper_navbar fs15">
+      <view class="tab_item {{currentTab=='0' ? 'on' : ''}}" data-current="0" bindtap="tabChange">所有订单</view>
+      <view class="tab_item {{currentTab=='1' ? 'on' : ''}}" data-current="1" bindtap="tabChange">待付款</view>
+      <view class="tab_item {{currentTab=='2' ? 'on' : ''}}" data-current="2" bindtap="tabChange">待发货</view>
+      <view class="tab_item {{currentTab=='3' ? 'on' : ''}}" data-current="3" bindtap="tabChange">待取货</view>
+      <view class="tab_item {{currentTab=='4' ? 'on' : ''}}" data-current="4" bindtap="tabChange">待评价</view>
+    </view>
+    <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+      <swiper-item class="content">
+        <view class="order_item" wx:for="{{order_items0}}">
+          <view class="item_title">
+            <view class="shop_name">
+              <image src="/resources/shop.png"></image>
+              <text class="txt1 txt__ellipsis">{{item.seller_name}}</text>
+              <image src="/resources/right_arrow.png"></image>
+            </view>
+            <text class="txt2">{{item.status}}</text>
+          </view>
+          <view class="item_divide" wx:for="{{item.orderDetails}}" wx:for-item="i">
+            <view class='divide_line'></view>
+            <view class="item_content">
+              <image src="{{i.pic_url}}" mode="aspectFill"></image>
+              <view class="item_text">
+                <text class="txt__ellipsis">{{i.product_name}}</text>
+                <view class="num_price">
+                  <text class="g_num">x{{i.product_num}}</text>
+                  <text class="g_price">￥{{i.product_price}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="order_status">
+            <view class="status">
+              <view style="color:#888">订单号：
+                <text style="color:black">{{item.order_no}}</text>
+              </view>
+              <view style="color:#888">总价：
+                <text style="color:#ff6347;font-weight: bold;font-size:15px">￥{{item.order_amount_total}}</text>
+              </view>
+            </view>
+            <view class="btns">
+              <view style='margin-right:30rpx'>
+                <button class="{{item.show ? 'btn1':'hidden__item'}}" bindtap='cancel' data-order_no="{{item.order_no}}" data-curpage="all">取消订单</button>
+              </view>
+              <view>
+                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}" data-order_no="{{item.order_no}}">{{item.btn}}</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+
+      <swiper-item class="content">
+        <view class="order_item" wx:for="{{order_items1}}">
+          <view class="item_title">
+            <view class="shop_name">
+              <image src="/resources/shop.png"></image>
+              <text class="txt1 txt__ellipsis">{{item.seller_name}}</text>
+              <image src="/resources/right_arrow.png"></image>
+            </view>
+            <text class="txt2">{{item.status}}</text>
+          </view>
+          <view class="item_divide" wx:for="{{item.orderDetails}}" wx:for-item="i">
+            <view class='divide_line'></view>
+            <view class="item_content">
+              <image src="{{i.pic_url}}" mode="aspectFill"></image>
+              <view class="item_text">
+                <text class="txt__ellipsis">{{i.product_name}}</text>
+                <view class="num_price">
+                  <text class="g_num">x{{i.product_num}}</text>
+                  <text class="g_price">￥{{i.product_price}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="order_status">
+            <view class="status">
+              <view style="color:#888">订单号：
+                <text style="color:black">{{item.order_no}}</text>
+              </view>
+              <view style="color:#888">总价：
+                <text style="color:#ff6347;font-weight: bold;font-size:15px">￥{{item.order_amount_total}}</text>
+              </view>
+            </view>
+            <view class="btns">
+              <view style='margin-right:30rpx'>
+                <button class="{{item.show ? 'btn1':'hidden__item'}}" bindtap='cancel' data-order_no="{{item.order_no}}" data-curpage="ordered">取消订单</button>
+              </view>
+              <view>
+                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}">{{item.btn}}</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+
+      <swiper-item class="content">
+        <view class="order_item" wx:for="{{order_items2}}">
+          <view class="item_title">
+            <view class="shop_name">
+              <image src="/resources/shop.png"></image>
+              <text class="txt1 txt__ellipsis">{{item.seller_name}}</text>
+              <image src="/resources/right_arrow.png"></image>
+            </view>
+            <text class="txt2">{{item.status}}</text>
+          </view>
+          <view class="item_divide" wx:for="{{item.orderDetails}}" wx:for-item="i">
+            <view class='divide_line'></view>
+            <view class="item_content">
+              <image src="{{i.pic_url}}" mode="aspectFill"></image>
+              <view class="item_text">
+                <text class="txt__ellipsis">{{i.product_name}}</text>
+                <view class="num_price">
+                  <text class="g_num">x{{i.product_num}}</text>
+                  <text class="g_price">￥{{i.product_price}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="order_status">
+            <view class="status">
+              <view style="color:#888">订单号：
+                <text style="color:black">{{item.order_no}}</text>
+              </view>
+              <view style="color:#888">总价：
+                <text style="color:#ff6347;font-weight: bold;font-size:15px">￥{{item.order_amount_total}}</text>
+              </view>
+            </view>
+            <view class="btns">
+              <view style='margin-right:30rpx'>
+                <button class="{{item.show ? 'btn1':'hidden__item'}}" bindtap='cancel' data-order_no="{{item.order_no}}" data-curpage="payed">取消订单</button>
+              </view>
+              <view>
+                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}">{{item.btn}}</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+
+      <swiper-item class="content">
+        <view class="order_item" wx:for="{{order_items3}}">
+          <view class="item_title">
+            <view class="shop_name">
+              <image src="/resources/shop.png"></image>
+              <text class="txt1 txt__ellipsis">{{item.seller_name}}</text>
+              <image src="/resources/right_arrow.png"></image>
+            </view>
+            <text class="txt2">{{item.status}}</text>
+          </view>
+          <view class="item_divide" wx:for="{{item.orderDetails}}" wx:for-item="i">
+            <view class='divide_line'></view>
+            <view class="item_content">
+              <image src="{{i.pic_url}}" mode="aspectFill"></image>
+              <view class="item_text">
+                <text class="txt__ellipsis">{{i.product_name}}</text>
+                <view class="num_price">
+                  <text class="g_num">x{{i.product_num}}</text>
+                  <text class="g_price">￥{{i.product_price}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="order_status">
+            <view class="status">
+              <view style="color:#888">订单号：
+                <text style="color:black">{{item.order_no}}</text>
+              </view>
+              <view style="color:#888">总价：
+                <text style="color:#ff6347;font-weight: bold;font-size:15px">￥{{item.order_amount_total}}</text>
+              </view>
+            </view>
+            <view class="btns">
+              <view style='margin-right:30rpx'>
+                <button class="{{item.show ? 'btn1':'hidden__item'}}" bindtap='cancel' data-order_no="{{item.order_no}}" data-curpage="topick">取消订单</button>
+              </view>
+              <view>
+                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}">{{item.btn}}</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+
+      <swiper-item class="content">
+        <view class="order_item" wx:for="{{order_items4}}">
+          <view class="item_title">
+            <view class="shop_name">
+              <image src="/resources/shop.png"></image>
+              <text class="txt1 txt__ellipsis">{{item.seller_name}}</text>
+              <image src="/resources/right_arrow.png"></image>
+            </view>
+            <text class="txt2">{{item.status}}</text>
+          </view>
+          <view class="item_divide" wx:for="{{item.orderDetails}}" wx:for-item="i">
+            <view class='divide_line'></view>
+            <view class="item_content">
+              <image src="{{i.pic_url}}" mode="aspectFill"></image>
+              <view class="item_text">
+                <text class="txt__ellipsis">{{i.product_name}}</text>
+                <view class="num_price">
+                  <text class="g_num">x{{i.product_num}}</text>
+                  <text class="g_price">￥{{i.product_price}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="order_status">
+            <view class="status">
+              <view style="color:#888">订单号：
+                <text style="color:black">{{item.order_no}}</text>
+              </view>
+              <view style="color:#888">总价：
+                <text style="color:#ff6347;font-weight: bold;font-size:15px">￥{{item.order_amount_total}}</text>
+              </view>
+            </view>
+            <view class="btns">
+              <view style='margin-right:30rpx'>
+                <button class="btn1" bindtap='evaluation' data-order_no="{{item.order_no}}">评价此单</button>
+              </view>
+              <view>
+                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}">{{item.btn}}</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

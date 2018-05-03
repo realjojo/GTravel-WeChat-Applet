@@ -1,0 +1,424 @@
+<!--pages/route/search_result.wxml-->
+<map id="result" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" polyline="{{polyline}}" scale="{{scale}}" show-location style="width: 100%; height: 100vh;">
+  <cover-view wx:if="{{search_type=='single'}}">
+    <cover-view class="cover_view">
+      <cover-view id="time" class="mode_item single" bindtap="choose_mode">
+        <cover-view>用时最短</cover-view>
+      </cover-view>
+      <cover-view id="busy" class="mode_item single" bindtap="choose_mode">
+        <cover-view>最不繁忙</cover-view>
+      </cover-view>
+      <cover-view id="change" class="mode_item single" bindtap="choose_mode">
+        <cover-view>最少换乘</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+  <cover-view wx:if="{{search_type=='multi'}}">
+    <cover-view class="cover_view">
+      <cover-view id="auto" class="mode_item multi" bindtap="choose_mode">
+        <cover-view>智能选择</cover-view>
+      </cover-view>
+      <cover-view id="direct" class="mode_item multi" bindtap="choose_mode">
+        <cover-view>直接汇合</cover-view>
+      </cover-view>
+      <cover-view id="shopping" class="mode_item multi" bindtap="choose_mode">
+        <cover-view>购物偏好</cover-view>
+      </cover-view>
+      <cover-view id="catering" class="mode_item multi" bindtap="choose_mode">
+        <cover-view>餐饮偏好</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+
+  <cover-view class="bottom_item h1" wx:if="{{search_type=='single'}}">
+    <cover-view class="tip" hidden="{{hidden_tip}}">
+      <cover-view class="tip_txt">点击站点名称可查看附近商家</cover-view>
+      <cover-image class="tip_img" src="/resources/close.png" bindtap="close_tip"></cover-image>
+    </cover-view>
+
+    <cover-view class="content">
+      <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+      <cover-view class="text column">
+        <cover-view>步行1380米到达 {{start_sta}}</cover-view>
+        <cover-view style='color:#888'>从A口(西北口)入站</cover-view>
+      </cover-view>
+    </cover-view>
+
+    <cover-view class="column">
+      <cover-view class="item0">
+        <cover-view class="tag">起点</cover-view>
+        <cover-view class="circle">
+          <cover-view class="dot" style="background:{{s_color}}"></cover-view>
+          <cover-view class="short_line" style="background:{{s_color}}"></cover-view>
+        </cover-view>
+        <cover-view class="station">
+          <cover-view bindtap="showSeller" data-sta="{{start_sta}}">{{start_sta}}</cover-view>
+          <cover-view class="line_name" style="background:{{s_color}}">{{s_line}}</cover-view>
+          <cover-view class="sta_num" style='color:#888;font-size:12px'>{{s_num}}站</cover-view>
+          <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+        </cover-view>
+      </cover-view>
+
+      <cover-view wx:for="{{stations}}" wx:key="">
+        <cover-view class="{{item.show ? 'hidden__item':'item0'}}">
+          <cover-view class="tag" style='font-size:12px'>{{item.time}}</cover-view>
+          <cover-view class="circle">
+            <cover-view class="empty_dot" style="border: 1px solid {{item.color}}"></cover-view>
+            <cover-view class="short_line1" style="background:{{item.color}}"></cover-view>
+          </cover-view>
+          <cover-view style='color:#888;font-size:12px' bindtap="showSeller" data-sta="{{item.sta}}">{{item.sta}}</cover-view>
+          <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+        </cover-view>
+        <cover-view class="{{item.show ? 'item0':'hidden__item'}}">
+          <cover-view class="tag">换乘</cover-view>
+          <cover-view class="circle">
+            <cover-image class="exchange" src="/resources/circle.png"></cover-image>
+            <cover-view class="short_line" style="background:{{item.change_color}}"></cover-view>
+          </cover-view>
+          <cover-view class="station">
+            <cover-view bindtap="showSeller" data-sta="{{item.change_sta}}">{{item.change_sta}}</cover-view>
+            <cover-view class="line_name" style="background:{{item.change_color}}">{{item.change_line}}</cover-view>
+            <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.change_num}}站</cover-view>
+            <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+
+      <cover-view class="item0">
+        <cover-view class="tag">终点</cover-view>
+        <cover-view class="circle">
+          <cover-view class="dot" style="background:{{e_color}}"></cover-view>
+        </cover-view>
+        <cover-view class="station">
+          <cover-view bindtap="showSeller" data-sta="{{end_sta}}">{{end_sta}}</cover-view>
+          <cover-view class="line_name" style="background:{{e_color}}">{{e_line}}</cover-view>
+          <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+
+    <cover-view class="content">
+      <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+      <cover-view class="text column">
+        <cover-view>步行1380米到达 {{end_sta}}</cover-view>
+        <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+
+  <cover-view class="bottom_item h2" wx:if="{{search_type=='multi'}}">
+    <cover-view class="multi_navbar">
+      <cover-view id="{{index}}" class="tab_item{{activeIndex == index ? ' on' : ''}}" wx:for="{{tabs}}" wx:key="" bindtap="tabClick">
+        <cover-view>{{item}}</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="tab__panel">
+      <cover-view class="tip" hidden="{{hidden_tip}}">
+        <cover-view class="tip_txt">点击站点名称可查看附近商家</cover-view>
+        <cover-image class="tip_img" src="/resources/close.png" bindtap="close_tip"></cover-image>
+      </cover-view>
+      <cover-view hidden="{{activeIndex != 0}}">
+        <cover-view class="content" wx:for="{{rr1}}" wx:key="">
+          <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+          <cover-view class="text column">
+            <cover-view>步行1380米到达 {{item.start_sta}}</cover-view>
+            <cover-view style='color:#888'>从A口(西北口)入站</cover-view>
+          </cover-view>
+        </cover-view>
+
+        <cover-view class="column">
+          <cover-view class="item0" wx:for="{{rr1}}" wx:key="">
+            <cover-view class="tag">起点</cover-view>
+            <cover-view class="circle">
+              <cover-view class="dot" style="background:{{item.s_color}}"></cover-view>
+              <cover-view class="short_line" style="background:{{item.s_color}}"></cover-view>
+            </cover-view>
+            <cover-view class="station">
+              <cover-view bindtap="showSeller" data-sta="{{item.start_sta}}">{{item.start_sta}}</cover-view>
+              <cover-view class="line_name" style="background:{{item.s_color}}">{{item.s_line}}</cover-view>
+              <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.s_num}}站</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+          </cover-view>
+
+          <cover-view wx:for="{{station1}}" wx:key="">
+            <cover-view class="{{item.show ? 'hidden__item':'item0'}}">
+              <cover-view class="tag" style='font-size:12px'>{{item.gather}}</cover-view>
+              <cover-view class="circle">
+                <cover-view class="empty_dot" style="border: 1px solid {{item.color}}"></cover-view>
+                <cover-view class="short_line1" style="background:{{item.color}}"></cover-view>
+              </cover-view>
+              <cover-view style='color:#888;font-size:12px' bindtap="showSeller" data-sta="{{item.sta}}">{{item.sta}}</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+            <cover-view class="{{item.show ? 'item0':'hidden__item'}}">
+              <cover-view class="tag">换乘{{item.gather}}</cover-view>
+              <cover-view class="circle">
+                <cover-image class="exchange" src="/resources/circle.png"></cover-image>
+                <cover-view class="short_line" style="background:{{item.change_color}}"></cover-view>
+              </cover-view>
+              <cover-view class="station">
+                <cover-view bindtap="showSeller" data-sta="{{item.change_sta}}">{{item.change_sta}}</cover-view>
+                <cover-view class="line_name" style="background:{{item.change_color}}">{{item.change_line}}</cover-view>
+                <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.change_num}}站</cover-view>
+                <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+              </cover-view>
+            </cover-view>
+          </cover-view>
+
+          <cover-view class="item0" wx:for="{{rr1}}" wx:key="">
+            <cover-view class="tag">终点</cover-view>
+            <cover-view class="circle">
+              <cover-view class="dot" style="background:{{item.e_color}}"></cover-view>
+            </cover-view>
+            <cover-view class="station">
+              <cover-view bindtap="showSeller" data-sta="{{item.end_sta}}">{{item.end_sta}}</cover-view>
+              <cover-view class="line_name" style="background:{{item.e_color}}">{{item.e_line}}</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+          </cover-view>
+        </cover-view>
+
+        <cover-view class="content" wx:for="{{rr1}}" wx:key="">
+          <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+          <cover-view class="text column">
+            <cover-view>步行1380米到达 {{item.end_sta}}</cover-view>
+            <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+
+      <cover-view hidden="{{activeIndex != 1}}">
+        <cover-view class="content" wx:for="{{rr2}}" wx:key="">
+          <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+          <cover-view class="text column">
+            <cover-view>步行1380米到达 {{item.start_sta}}</cover-view>
+            <cover-view style='color:#888'>从A口(西北口)入站</cover-view>
+          </cover-view>
+        </cover-view>
+
+        <cover-view class="column">
+          <cover-view class="item0" wx:for="{{rr2}}" wx:key="">
+            <cover-view class="tag">起点</cover-view>
+            <cover-view class="circle">
+              <cover-view class="dot" style="background:{{item.s_color}}"></cover-view>
+              <cover-view class="short_line" style="background:{{item.s_color}}"></cover-view>
+            </cover-view>
+            <cover-view class="station">
+              <cover-view bindtap="showSeller" data-sta="{{item.start_sta}}">{{item.start_sta}}</cover-view>
+              <cover-view class="line_name" style="background:{{item.s_color}}">{{item.s_line}}</cover-view>
+              <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.s_num}}站</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+          </cover-view>
+
+          <cover-view wx:for="{{station2}}" wx:key="">
+            <cover-view class="{{item.show ? 'hidden__item':'item0'}}">
+              <cover-view class="tag" style='font-size:12px'>{{item.gather}}</cover-view>
+              <cover-view class="circle">
+                <cover-view class="empty_dot" style="border: 1px solid {{item.color}}"></cover-view>
+                <cover-view class="short_line1" style="background:{{item.color}}"></cover-view>
+              </cover-view>
+              <cover-view style='color:#888;font-size:12px' bindtap="showSeller" data-sta="{{item.sta}}">{{item.sta}}</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+            <cover-view class="{{item.show ? 'item0':'hidden__item'}}">
+              <cover-view class="tag">换乘{{item.gather}}</cover-view>
+              <cover-view class="circle">
+                <cover-image class="exchange" src="/resources/circle.png"></cover-image>
+                <cover-view class="short_line" style="background:{{item.change_color}}"></cover-view>
+              </cover-view>
+              <cover-view class="station">
+                <cover-view bindtap="showSeller" data-sta="{{item.change_sta}}">{{item.change_sta}}</cover-view>
+                <cover-view class="line_name" style="background:{{item.change_color}}">{{item.change_line}}</cover-view>
+                <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.change_num}}站</cover-view>
+                <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+              </cover-view>
+            </cover-view>
+          </cover-view>
+
+          <cover-view class="item0" wx:for="{{rr2}}" wx:key="">
+            <cover-view class="tag">终点</cover-view>
+            <cover-view class="circle">
+              <cover-view class="dot" style="background:{{item.e_color}}"></cover-view>
+            </cover-view>
+            <cover-view class="station">
+              <cover-view bindtap="showSeller" data-sta="{{item.end_sta}}">{{item.end_sta}}</cover-view>
+              <cover-view class="line_name" style="background:{{item.e_color}}">{{item.e_line}}</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+          </cover-view>
+        </cover-view>
+
+        <cover-view class="content" wx:for="{{rr2}}" wx:key="">
+          <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+          <cover-view class="text column">
+            <cover-view>步行1380米到达 {{item.end_sta}}</cover-view>
+            <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+
+      <cover-view hidden="{{activeIndex != 2}}">
+        <cover-view class="content" wx:for="{{rr3}}" wx:key="">
+          <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+          <cover-view class="text column">
+            <cover-view>步行1380米到达 {{item.start_sta}}</cover-view>
+            <cover-view style='color:#888'>从A口(西北口)入站</cover-view>
+          </cover-view>
+        </cover-view>
+
+        <cover-view class="column">
+          <cover-view class="item0" wx:for="{{rr3}}" wx:key="">
+            <cover-view class="tag">起点</cover-view>
+            <cover-view class="circle">
+              <cover-view class="dot" style="background:{{item.s_color}}"></cover-view>
+              <cover-view class="short_line" style="background:{{item.s_color}}"></cover-view>
+            </cover-view>
+            <cover-view class="station">
+              <cover-view bindtap="showSeller" data-sta="{{item.start_sta}}">{{item.start_sta}}</cover-view>
+              <cover-view class="line_name" style="background:{{item.s_color}}">{{item.s_line}}</cover-view>
+              <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.s_num}}站</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+          </cover-view>
+
+          <cover-view wx:for="{{station3}}" wx:key="">
+            <cover-view class="{{item.show ? 'hidden__item':'item0'}}">
+              <cover-view class="tag" style='font-size:12px'>{{item.gather}}</cover-view>
+              <cover-view class="circle">
+                <cover-view class="empty_dot" style="border: 1px solid {{item.color}}"></cover-view>
+                <cover-view class="short_line1" style="background:{{item.color}}"></cover-view>
+              </cover-view>
+              <cover-view style='color:#888;font-size:12px' bindtap="showSeller" data-sta="{{item.sta}}">{{item.sta}}</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+            <cover-view class="{{item.show ? 'item0':'hidden__item'}}">
+              <cover-view class="tag">换乘{{item.gather}}</cover-view>
+              <cover-view class="circle">
+                <cover-image class="exchange" src="/resources/circle.png"></cover-image>
+                <cover-view class="short_line" style="background:{{item.change_color}}"></cover-view>
+              </cover-view>
+              <cover-view class="station">
+                <cover-view bindtap="showSeller" data-sta="{{item.change_sta}}">{{item.change_sta}}</cover-view>
+                <cover-view class="line_name" style="background:{{item.change_color}}">{{item.change_line}}</cover-view>
+                <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.change_num}}站</cover-view>
+                <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+              </cover-view>
+            </cover-view>
+          </cover-view>
+
+          <cover-view class="item0" wx:for="{{rr3}}" wx:key="">
+            <cover-view class="tag">终点</cover-view>
+            <cover-view class="circle">
+              <cover-view class="dot" style="background:{{item.e_color}}"></cover-view>
+            </cover-view>
+            <cover-view class="station">
+              <cover-view bindtap="showSeller" data-sta="{{item.end_sta}}">{{item.end_sta}}</cover-view>
+              <cover-view class="line_name" style="background:{{item.e_color}}">{{item.e_line}}</cover-view>
+              <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+            </cover-view>
+          </cover-view>
+        </cover-view>
+
+        <cover-view class="content" wx:for="{{rr3}}" wx:key="">
+          <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+          <cover-view class="text column">
+            <cover-view>步行1380米到达 {{item.end_sta}}</cover-view>
+            <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+
+  <cover-view class="bottom_item h3" wx:if="{{search_type=='time'}}">
+    <cover-view class="tip" hidden="{{hidden_tip}}">
+      <cover-view class="tip_txt">点击站点名称可查看附近商家</cover-view>
+      <cover-image class="tip_img" src="/resources/close.png" bindtap="close_tip"></cover-image>
+    </cover-view>
+    <cover-view class="b3">
+      <cover-image class="cover_img" src="/resources/advice_time.png"></cover-image>
+      <cover-view class="advice">
+        <cover-view>综合当前道路状况，建议您</cover-view>
+        <cover-view class="bold">{{advice_time}}</cover-view>
+        <cover-view>出发</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="b3">
+      <cover-image class="cover_img" src="/resources/weather.png"></cover-image>
+      <cover-view class="advice">
+        <cover-view>广州市</cover-view>
+        <cover-view class="bold">{{weather}}</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="content" wx:for="{{rr}}" wx:key="">
+      <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+      <cover-view class="text column">
+        <cover-view>步行1380米到达 {{item.start_sta}}</cover-view>
+        <cover-view style='color:#888'>从A口(西北口)入站</cover-view>
+      </cover-view>
+    </cover-view>
+
+    <cover-view class="column">
+      <cover-view class="item0" wx:for="{{rr}}" wx:key="">
+        <cover-view class="tag">起点</cover-view>
+        <cover-view class="circle">
+          <cover-view class="dot" style="background:{{item.s_color}}"></cover-view>
+          <cover-view class="short_line" style="background:{{item.s_color}}"></cover-view>
+        </cover-view>
+        <cover-view class="station">
+          <cover-view bindtap="showSeller" data-sta="{{item.start_sta}}">{{item.start_sta}}</cover-view>
+          <cover-view class="line_name" style="background:{{item.s_color}}">{{item.s_line}}</cover-view>
+          <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.s_num}}站</cover-view>
+          <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+        </cover-view>
+      </cover-view>
+
+      <cover-view wx:for="{{stations}}" wx:key="">
+        <cover-view class="{{item.show ? 'hidden__item':'item0'}}">
+          <cover-view class="tag" style='font-size:12px'>{{item.gather}}</cover-view>
+          <cover-view class="circle">
+            <cover-view class="empty_dot" style="border: 1px solid {{item.color}}"></cover-view>
+            <cover-view class="short_line1" style="background:{{item.color}}"></cover-view>
+          </cover-view>
+          <cover-view style='color:#888;font-size:12px' bindtap="showSeller" data-sta="{{item.sta}}">{{item.sta}}</cover-view>
+          <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+        </cover-view>
+        <cover-view class="{{item.show ? 'item0':'hidden__item'}}">
+          <cover-view class="tag">换乘{{item.gather}}</cover-view>
+          <cover-view class="circle">
+            <cover-image class="exchange" src="/resources/circle.png"></cover-image>
+            <cover-view class="short_line" style="background:{{item.change_color}}"></cover-view>
+          </cover-view>
+          <cover-view class="station">
+            <cover-view bindtap="showSeller" data-sta="{{item.change_sta}}">{{item.change_sta}}</cover-view>
+            <cover-view class="line_name" style="background:{{item.change_color}}">{{item.change_line}}</cover-view>
+            <cover-view class="sta_num" style='color:#888;font-size:12px'>{{item.change_num}}站</cover-view>
+            <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+          </cover-view>
+        </cover-view>
+      </cover-view>
+
+      <cover-view class="item0" wx:for="{{rr}}" wx:key="">
+        <cover-view class="tag">终点</cover-view>
+        <cover-view class="circle">
+          <cover-view class="dot" style="background:{{item.e_color}}"></cover-view>
+        </cover-view>
+        <cover-view class="station">
+          <cover-view bindtap="showSeller" data-sta="{{item.end_sta}}">{{item.end_sta}}</cover-view>
+          <cover-view class="line_name" style="background:{{item.e_color}}">{{item.e_line}}</cover-view>
+          <cover-image class="{{item.hot ? 'hot' : 'hidden__item'}}" src="/resources/fire.png"></cover-image>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+
+    <cover-view class="content" wx:for="{{rr}}" wx:key="">
+      <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
+      <cover-view class="text column">
+        <cover-view>步行1380米到达 {{item.end_sta}}</cover-view>
+        <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</map>

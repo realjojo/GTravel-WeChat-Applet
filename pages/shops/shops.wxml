@@ -1,0 +1,27 @@
+<!--pages/shops/shops.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view id="{{i.shop_id}}" class="result_item" wx:for="{{shops}}" wx:for-item="i" bindtap='click_shop' wx:key="">
+      <image class="pic" mode="aspectFill" src="{{i.poster_url}}"></image>
+      <view class="desc">
+        <text style='font-size:16px'>{{i.shop_name}}</text>
+        <view class="row">
+          <block wx:for="{{i.s1}}">
+            <image class="stars" src="/resources/star1.png"></image>
+          </block>
+          <block wx:for="{{i.s2}}">
+            <image class="stars" src="/resources/star2.png"></image>
+          </block>
+          <text style="margin-left:30rpx;font-size:14px;color:#888">{{i.comment}}</text>
+          <text style="margin-left:30rpx;font-size:14px">{{i.ave_price}}</text>
+        </view>
+        <view class="row_sb">
+          <view class="tag">
+            <view wx:for="{{i.tags}}" wx:for-item="t">{{t}}</view>
+          </view>
+          <text class="txt__ellipsis" style="width:300rpx">{{i.addr}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

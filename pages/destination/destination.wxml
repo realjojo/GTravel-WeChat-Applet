@@ -1,0 +1,86 @@
+<!--pages/destination/destination.wxml-->
+<view class="container">
+  <view class="swiper_navbar fs15">
+    <view class="tab_item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="tabChange">目的地推荐</view>
+    <view class="tab_item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="tabChange">出行建议</view>
+  </view>
+
+  <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+    <swiper-item class="content">
+      <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+          <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input type="text" class="weui-search-bar__input" placeholder="请输入您的起点站" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindfocus='bindfocus' bindblur='bindblur' />
+            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+              <icon type="clear" size="14"></icon>
+            </view>
+          </view>
+          <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+            <icon class="weui-icon-search" type="search" size="14"></icon>
+            <view class="weui-search-bar__text">起点站</view>
+          </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+      </view>
+      <view class="weui-cells searchbar-result" wx:if="{{focus}}">
+        <view id="{{item}}" class="weui-cell weui-cell__bd" wx:for="{{result}}" bindtap='click_result'>{{item}}</view>
+      </view>
+
+      <view class="search_keyword">
+        <text style="font-size:15px">关键词：</text>
+        <input type="text" placeholder="请输入站点关键词" bindinput='input' value='{{kwVal}}'></input>
+      </view>
+
+      <view class="hot_keyword">
+        <view class="hot_title">
+          <text style="font-size:15px;color:#888">热门关键词</text>
+        </view>
+        <view class='divide_line'></view>
+        <view class="keyword_list">
+          <view id="{{item.id}}" class="{{item.check ? 'keyword_check' : 'keyword_normal'}}" wx:for="{{keyword_list}}" bindtap='check_kw' data-txt='{{item.txt}}'>{{item.txt}}</view>
+        </view>
+      </view>
+
+      <view class="bottom">
+        <button id="destination" class="search_btn" bindtap="start_search">开始搜索</button>
+      </view>
+    </swiper-item>
+
+    <swiper-item class="content">
+      <view class="single_route">
+        <view class="single_search">
+          <input id="s" type="text" placeholder="输入起点" bindinput='myinput' value='{{ss}}'></input>
+          <input id="e" type="text" placeholder="输入终点" bindinput='myinput' value='{{ee}}'></input>
+        </view>
+        <view class="exchange">
+          <image src="/resources/exchange.png" mode="aspectFit" bindtap="exchange"></image>
+        </view>
+      </view>
+
+      <view class="search_history">
+        <icon type="waiting" color="#b2b2b2" size="20"></icon>
+        <text style="margin-left:30rpx;color:#b2b2b2;font-size:16px">暂无历史记录</text>
+      </view>
+      <view class="divide__line"></view>
+      <view class="clear_history">
+        <text>清空历史记录</text>
+      </view>
+
+      <view class="time">
+        <text style="font-size:16px">出行时间：</text>
+        <picker id="time1" mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+          <view class="time_text">{{time1}}</view>
+        </picker>
+        <view>~</view>
+        <picker id="time2" mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+          <view class="time_text">{{time2}}</view>
+        </picker>
+      </view>
+
+      <view class="bottom">
+        <button id="advice" class="search_btn" bindtap="start_search">开始搜索</button>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

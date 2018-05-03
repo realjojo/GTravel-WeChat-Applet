@@ -1,0 +1,282 @@
+/* pages/destination/destination.wxss */
+
+page {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+
+.swiper_navbar {
+  width: 100%;
+  background: white;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  line-height: 80rpx;
+}
+
+.tab_item {
+  flex: 1;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 16px;
+  color: #888;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 85rpx;
+}
+
+.on {
+  color: #3399FF;
+  border-bottom: 5rpx solid #3399FF;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+.search {
+  padding: 25rpx;
+  background-color: white;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.search_sta {
+  background-color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+}
+
+.search_input {
+  flex: 8;
+}
+
+.search_input input {
+  height: 80rpx;
+  color: #888;
+  background-color: #ededed;
+  border-radius: 10rpx;
+  font-size: 16px;
+  padding: 0 0.5em;
+  box-sizing: border-box;
+  display: block;
+}
+
+.search_start {
+  flex: 1;
+  height: 80rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.search_start button {
+  width: 100%;
+  border: none;
+  display: block;
+}
+
+.search_keyword {
+  height: 80rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 25rpx;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.search_keyword text {
+  width: 150rpx;
+}
+
+.search_keyword input {
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 15px;
+  padding: 10rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.divide_line {
+  height: 1px;
+  background-color: #ddd;
+  margin-left: 25rpx;
+}
+
+.hot_keyword {
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.hot_title {
+  padding: 25rpx;
+}
+
+.keyword_list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 25rpx 25rpx 25rpx;
+}
+
+.keyword_normal {
+  border: 1px solid #888;
+  border-radius: 10%;
+  color: #888;
+  font-size: 15px;
+  padding: 4rpx 8rpx;
+  margin: 25rpx 25rpx 0 0;
+}
+
+.keyword_check {
+  border: 1px solid #f96;
+  background-color: #f96;
+  border-radius: 10%;
+  color: white;
+  font-size: 15px;
+  padding: 4rpx 8rpx;
+  margin: 25rpx 25rpx 0 0;
+}
+
+.single_route {
+  width: 100%;
+  height: 220rpx;
+  background-color: #87c38e;
+  display: flex;
+  flex-direction: row;
+}
+
+.single_search {
+  display: flex;
+  flex-direction: column;
+  flex: 8;
+}
+
+.single_search input {
+  display: flex;
+  height: 80rpx;
+  margin-left: 80rpx;
+  margin-top: 20rpx;
+  padding-left: 10rpx;
+  font-size: 16px;
+  background-color: white;
+  opacity: 0.4;
+  border-radius: 10rpx;
+}
+
+.exchange {
+  flex: 1;
+  height: 100%;
+  display: flex;
+}
+
+.exchange image {
+  width: 100%;
+  height: 100%;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.search_history {
+  background-color: white;
+  border-top: 1px solid #ddd;
+  padding: 30rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.divide_line {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.clear_history {
+  width: 100%;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.clear_history text {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+
+.time {
+  display: flex;
+  height: 80rpx;
+  padding: 20rpx 25rpx;
+  align-items: center;
+}
+
+.time_text {
+  width: 210rpx;
+  height: 80rpx;
+  margin: 0 20rpx;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: white;
+  background-color: #87c38e;
+  font-size: 16px;
+  border-radius: 10rpx;
+}
+
+.bottom {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  bottom: 200rpx;
+  position: fixed;
+  justify-content: center;
+}
+
+.search_btn {
+  color: white;
+  background-color: #87c38e;
+  font-size: 16px;
+  width: 280rpx;
+}
+
+.searchbar-result {
+  margin-top: 0;
+  z-index: 3;
+  position: fixed;
+  width: 750rpx;
+  font-size: 15px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+}
+
+.searchbar-result:before {
+  display: none;
+}
+
+.weui-cell {
+  padding: 12px 15px 12px 35px;
+}

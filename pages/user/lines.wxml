@@ -1,0 +1,36 @@
+<!--pages/user/lines.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">
+      <image src="/resources/GZ.png"></image>
+      <text>广州地铁</text>
+    </view>
+    <view class="page__desc">广州地铁经过20余年的建设，现已建成开通一号线至八号线、APM、广佛线等10条、309公里的地铁线路，以及海珠区环岛新型有轨电车试验段（7.7公里），线网里程居全国第三，世界前十。</view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <view class="kind-list">
+      <block wx:for="{{list}}" wx:key="id">
+        <view class="kind-list__item">
+          <view id="{{item.id}}" class="weui-flex kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
+            <view class="weui-flex__item">{{item.name}}</view>
+            <image class="kind-list__img" src="/resources/form.png"></image>
+          </view>
+          <view class="kind-list__item-bd {{item.open ? 'kind-list__item-bd_show' : ''}}">
+            <view class="weui-cells {{item.open ? 'weui-cells_show' : ''}}">
+              <block wx:for="{{item.lines}}" wx:for-item="page" wx:key="">
+                <view id="{{page}}" class="weui-cell weui-cell_access" bindtap='navigate'>
+                  <view class="weui-cell__bd">{{page}}</view>
+                  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="page__ft foot">
+    <image src="/resources/GZ_gray.png" style="width: 60rpx; height: 60rpx;"></image>
+    <view style='color:#bfbfbf'>广州地铁</view>
+  </view>
+</view>

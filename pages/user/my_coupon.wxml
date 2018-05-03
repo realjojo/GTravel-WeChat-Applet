@@ -1,0 +1,37 @@
+<!--pages/user/my_coupon.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="nav_section">
+      <block wx:for="{{coupon_list}}">
+        <view class="items">
+          <!--image-->
+          <view class="image" bindtap="navigateDetail">
+            <block wx:if="{{item.image_url}}">
+              <image src="{{item.image_url}}" mode="aspectFill"></image>
+            </block>
+            <block wx:else>
+              <image src="/resources/default.png" mode="aspectFill"></image>
+            </block>
+          </view>
+          <!--content-->
+          <view class="content" bindtap="navigateDetail">
+            <view class="name">
+              <text class="textview">{{item.subject}}</text>
+            </view>
+            <view class="price">
+              <text class="textview">{{item.price}}</text>
+            </view>
+            <view class="active_time">
+              <text class="textview">{{item.message}}</text>
+            </view>
+          </view>
+          <!--button-->
+          <view class="receive">
+            <view class="divide_line"></view>
+            <button id="{{item.id}}" data-seller="{{item.seller_id}}" data-shop="{{item.shop_id}}" bindtap="use_btn">{{mtype == 0 ? '立即使用':'立即领取'}}</button>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

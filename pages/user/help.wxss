@@ -1,0 +1,19 @@
+/* pages/user/help.wxss */
+
+.contact{
+  width: 100rpx;
+  height: 50rpx;
+  background-color: yellow;
+}
+
+.routebtn{
+color: white;
+background-color: #87c38e;
+font-size: 16px;
+bottom: 160rpx;
+position: fixed;
+width: 280rpx;
+margin: 0 auto;
+left: 0;
+right: 0;
+}

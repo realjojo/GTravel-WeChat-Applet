@@ -1,0 +1,66 @@
+<!--pages/user/time_table.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <scroll-view scroll-y="true" class="scrollview">
+      <view class="my__hd">
+        <view class="page_title">广州地铁{{line_name}}</view>
+      </view>
+      <view class="weui-tab">
+        <view class="weui-navbar">
+          <block wx:for="{{tabs}}" wx:key="*this">
+            <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+              <view class="weui-navbar__title">{{item}}</view>
+            </view>
+          </block>
+          <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+        </view>
+        <view class="weui-tab__panel">
+          <view class="weui-tab__content" hidden="{{activeIndex != 0}}" style='background:white'>
+            <view class="content" wx:for="{{tables}}">
+              <view class='left'>
+                <view class='short_line' style="background:{{item.up ? '#228b22' : 'white'}}"></view>
+                <view class="circle"></view>
+                <view class='short_line' style="background:{{item.down ? '#228b22' : 'white'}}"></view>
+              </view>
+              <view id="{{item.sta}}" class='right' bindtap='click'>
+                <view class='name'>
+                  <view class="{{item.special == 0 ? 'tag tag1':'hidden__item'}}">{{item.tag}}</view>
+                  <view class="{{item.special == 1 ? 'tag tag2':'hidden__item'}}">{{item.tag}}</view>
+                  <view class="{{item.special == 2 ? 'normal':'hidden__item'}}">{{item.tag}}</view>
+                  <text class='sta'>{{item.sta}}</text>
+                </view>
+                <view>
+                  <image class="arrow" src='/resources/right_gray.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="weui-tab__content" hidden="{{activeIndex != 1}}" style='background:white'>
+            <view class="content" wx:for="{{tables1}}">
+              <view class='left'>
+                <view class='short_line' style="background:{{item.up ? '#228b22' : 'white'}}"></view>
+                <view class="circle"></view>
+                <view class='short_line' style="background:{{item.down ? '#228b22' : 'white'}}"></view>
+              </view>
+              <view id="{{item.sta}}" class='right' bindtap='click'>
+                <view class='name'>
+                  <view class="{{item.special == 0 ? 'tag tag1':'hidden__item'}}">{{item.tag}}</view>
+                  <view class="{{item.special == 1 ? 'tag tag2':'hidden__item'}}">{{item.tag}}</view>
+                  <view class="{{item.special == 2 ? 'normal':'hidden__item'}}">{{item.tag}}</view>
+                  <text class='sta'>{{item.sta}}</text>
+                </view>
+                <view>
+                  <image class="arrow" src='/resources/right_gray.png'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="page__ft foot">
+        <image src="/resources/GZ_gray.png" style="width: 60rpx; height: 60rpx;"></image>
+        <view style='color:#bfbfbf'>广州地铁</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,58 @@
+<!--pages/shops/sta_shops.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <!--选项卡-->
+    <view class="tabTit box tc">
+      <view class="flex1{{!tab[index]?' active':''}}" wx:for="{{tabTxt}}" data-index="{{index}}" bindtap="filterTab">
+        <text>{{item}}</text>
+        <image src="/resources/arrow_down.png"></image>
+      </view>
+    </view>
+    <!--筛选项-->
+    <view class="tabLayer tc" hidden="{{tab[0]}}">
+      <text class="{{choice1==item.id?'active':''}}" wx:for="{{general_list}}" data-id="{{item.id}}" data-index="0" data-txt="{{item.name}}" data-label="{{item.label}}" bindtap="filter">{{item.name}}</text>
+    </view>
+
+    <view class="tabLayer tc" hidden="{{tab[1]}}">
+      <text class="{{choice2==item.id?'active':''}}" wx:for="{{price_list}}" data-id="{{item.id}}" data-index="1" data-txt="{{item.name}}" data-label="{{item.label}}" bindtap="filter">{{item.name}}</text>
+    </view>
+
+    <view class="tabLayer tc" hidden="{{tab[2]}}">
+      <text class="{{choice3==item.id?'active':''}}" wx:for="{{distance_list}}" data-id="{{item.id}}" data-index="2" data-txt="{{item.name}}" data-label="{{item.label}}" bindtap="filter">{{item.name}}</text>
+    </view>
+
+    <view class="weui-cells weui-cells_after-title fs15">
+      <view class="page__lists" wx:for="{{stations}}">
+        <view class="weui-cell weui-cell_access">
+          <view class="weui-cell__hd">
+            <image src="/resources/r_subway.png" style="margin-right: 5px;vertical-align: middle;width:22px; height: 22px;"></image>
+          </view>
+          <view class="weui-cell__bd">{{item.sta}}</view>
+          <view class="weui-cell__bd fc8">{{item.num}}</view>
+          <image id="{{item.flag}}" class="weui-cell__ft" src="{{item.fold_url}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" bindtap='fold'></image>
+        </view>
+        <view id="{{i.shop_id}}" class="{{item.isfold ? 'hidden__item':'result_item'}}" wx:for="{{item.shops}}" wx:for-item="i" bindtap='click_shop'>
+          <image class="pic" mode="aspectFill" src="{{i.url}}"></image>
+          <view class="desc">
+            <text style='font-size:16px'>{{i.name}}</text>
+            <view class="row">
+              <block wx:for="{{i.s1}}">
+                <image class="stars" src="/resources/star1.png"></image>
+              </block>
+              <block wx:for="{{i.s2}}">
+                <image class="stars" src="/resources/star2.png"></image>
+              </block>
+              <text style="margin-left:30rpx;font-size:14px;color:#888">{{i.comment}}</text>
+              <text style="margin-left:30rpx;font-size:14px">{{i.price}}</text>
+            </view>
+            <view class="row_sb">
+              <text class="txt__ellipsis" style="width:370rpx">{{i.desc1}}</text>
+              <text style="width:200rpx;text-align:center">{{i.desc2}}</text>
+            </view>
+          </view>
+        </view>
+        <view style="width:100%;height:1px;background:#ddd;margin-left:15px"></view>
+      </view>
+    </view>
+  </view>
+</view>

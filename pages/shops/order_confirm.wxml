@@ -1,0 +1,59 @@
+<!--pages/shops/order_confirm.wxml-->
+<view class="column">
+  <view class="{{hasAddr ? 'hidden__item':'no_addr'}}" bindtap='chooseAddr'>
+    <text>暂无默认收货人，请添加收货人信息</text>
+    <image class="icon" src="/resources/right_gray.png"></image>
+  </view>
+  <view class="{{hasAddr ? 'addr':'hidden__item'}}" bindtap='chooseAddr'>
+    <image class="icon" src="/resources/addr.png"></image>
+    <view class="address">
+      <text>收货人：{{p_name}}</text>
+      <text>收货手机：{{p_phone}}</text>
+    </view>
+    <image class="icon" src="/resources/right_gray.png"></image>
+  </view>
+
+  <view class="title">
+    <image style='width:35rpx;height:35rpx' src="/resources/shop.png"></image>
+    <text style="margin:0 20rpx">{{title}}</text>
+  </view>
+  <view style='height:1px;margin-left:25rpx;background:#ddd'></view>
+
+  <view class="item" wx:for="{{goods}}">
+    <image class="goods_pic" src="{{item.picture_url}}"></image>
+    <view class="goods_content">
+      <text>{{item.goods_name}}</text>
+      <text class="txt__ellipsis" style='font-size:12px;color:#888'>{{item.description}}</text>
+      <view class="price_num">
+        <text style='color:#FF6347'>￥{{item.price}}</text>
+        <text>x{{item.bought_num}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title other">
+    <view class="weui-cell weui-cell_access" bindtap='deliver_type'>
+      <view class="weui-cell__bd">配送方式</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">{{deliver}}</view>
+    </view>
+    <view class="weui-cell weui-cell_access" bindtap='shop_coupon'>
+      <view class="weui-cell__bd">店铺优惠</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">{{discount}}</view>
+    </view>
+    <view class="weui-cell weui-cell_access">
+      <view class="weui-cell__hd">订单备注</view>
+      <view class="weui-cell__bd" style='margin-left:20rpx'>
+        <input class="weui-input" bindinput="remark" placeholder="不超过25个字" maxlength="25" />
+      </view>
+    </view>
+    <view class="weui-cell sum">
+      <text style='margin-right:25rpx'>共{{sum_num}}件商品</text>
+      <text>小计：</text>
+      <text style='color:#FF6347;font-weight:bold'>￥{{sum_price}}</text>
+    </view>
+  </view>
+
+  <view class="bottom">
+    <button class='primary_btn' bindtap='order_pay'>微信支付</button>
+  </view>
+</view>

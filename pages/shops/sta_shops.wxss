@@ -1,0 +1,91 @@
+/* pages/shops/sta_shops.wxss */
+
+.tabTit {
+  width: 750rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: white;
+  z-index: 1;
+  font-size: 15px;
+}
+
+.tabTit .active {
+  color: #e64340;
+  background-color: #fff;
+}
+
+.tabTit .active image {
+  transform: rotate(180deg);
+}
+
+.tabTit image {
+  width: 26rpx;
+  height: 26rpx;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.tabLayer {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+  width: 750rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 90rpx;
+  z-index: 1;
+  background-color: white;
+  padding-bottom: 26rpx;
+  border-bottom: solid 1px #e6e6e6;
+  font-size: 15px;
+}
+
+.tabLayer text {
+  width: 210rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  float: left;
+  border: solid 1px #eee;
+  margin: 20rpx 0 0 26rpx;
+}
+
+.tabLayer .active {
+  color: #e64340;
+  border-color: #e64340;
+}
+
+.result_item {
+  display: flex;
+  height: 160rpx;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.pic {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 20rpx;
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+  width: 580rpx;
+  justify-content: space-between;
+  margin: 14rpx 0;
+}
+
+.row {
+  display: flex;
+}
+
+.row_sb {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 14px;
+}
+
+.stars {
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+}

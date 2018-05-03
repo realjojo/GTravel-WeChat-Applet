@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/route/route",
+    "pages/destination/destination",
+    "pages/coupon/coupon",
+    "pages/user/user",
+    "pages/route/route_planning",
+    "pages/route/search_result",
+    "pages/user/user_info",
+    "pages/user/address",
+    "pages/user/my_coupon",
+    "pages/user/help",
+    "pages/user/register",
+    "pages/user/login",
+    "pages/user/order",
+    "pages/user/edit_addr",
+    "pages/user/change_info",
+    "pages/shops/shops",
+    "pages/shops/sta_shops",
+    "pages/shops/shop_detail",
+    "pages/shops/order_confirm",
+    "pages/user/time_table",
+    "pages/user/lines",
+    "pages/user/table_detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#87c38e",
+    "navigationBarTitleText": "GreenTravel",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#ddd"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/route/route",
+        "text": "路线",
+        "iconPath": "resources/route.png",
+        "selectedIconPath": "resources/select_route.png"
+      },
+      {
+        "pagePath": "pages/destination/destination",
+        "text": "建议",
+        "iconPath": "resources/destination.png",
+        "selectedIconPath": "resources/select_destination.png"
+      },
+      {
+        "pagePath": "pages/coupon/coupon",
+        "text": "优惠",
+        "iconPath": "resources/coupon.png",
+        "selectedIconPath": "resources/select_coupon.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "个人",
+        "iconPath": "resources/user.png",
+        "selectedIconPath": "resources/select_user.png"
+      }
+    ],
+    "color": "#353535",
+    "selectedColor": "#20B2AA",
+    "backgroundColor": "#fff",
+    "borderStyle": "black"
+  }
+}

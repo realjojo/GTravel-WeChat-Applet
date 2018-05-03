@@ -1,0 +1,56 @@
+<!--pages/shops/shop_detail.wxml-->
+<view class="mypage">
+  <scroll-view class="flex__cl" scroll-y="false">
+    <view class="shop_title">
+      <view class="shop_desc">
+        <image class="pic" src="{{shop_url}}"></image>
+        <text>{{shop_desc}}</text>
+      </view>
+      <view class="coupon" bindtap='couponList'>
+        <image class="coupon_icon" src="/resources/youhui.png"></image>
+        <text class="txt__ellipsis">{{shop_coupon}}</text>
+        <image class="right" src="/resources/right_white.png"></image>
+      </view>
+    </view>
+
+    <view class="menu__page">
+      <view class="types">
+        <view class="menu{{index==selected ? ' selected':''}}" wx:for="{{menu}}" wx:key="" data-index="{{index}}" catchtap="turnMenu">{{item.typeName}}</view>
+      </view>
+      <scroll-view scroll-y="true">
+        <view class="foodList">
+          <view class="title">{{menu[selected].typeName}}</view>
+          <block wx:for="{{menu[selected].menuContent}}" wx:key="">
+            <view class="food">
+              <image class="img" src="{{item.src}}"></image>
+              <view class="food-info">
+                <view class="name">{{item.name}}</view>
+                <view class="sales txt__ellipsis">{{item.desc}}</view>
+                <view class="price">
+                  <view style="font-size:15px;color:#ff8692">￥{{item.price}}</view>
+                  <view class="sales" style='margin-left:20rpx'>月售 {{item.sales}}</view>
+                </view>
+              </view>
+              <view class="food-numb">
+                <image class="remove" bindtap="removeFromTrolley" hidden="{{item.numb==0}}" data-index="{{index}}" src="/resources/r_from_t.png"></image>
+                <text class="text" hidden="{{item.numb==0}}">{{item.numb}}</text>
+                <image class="add" bindtap="addToTrolley" data-index="{{index}}" src="/resources/a_to_t.png"></image>
+              </view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="footer {{cost!=0?'active':''}}">
+      <view class="img" style="background:{{cost!=0?'#FFD161':'#ccc'}};">
+        <image src="/resources/trolley.png" style="width:60rpx;height:60rpx;"></image>
+      </view>
+      <view class="howMuch">
+        <view class="cost" hidden="{{cost==0}}">￥{{cost}}</view>
+        <view class="num">{{cost!=0?'已选择'+all_num+'件商品':'未选中任何商品'}}</view>
+      </view>
+      <view class="pay" bindtap='pay'>{{cost!=0?'去结算':'15元起送'}}</view>
+    </view>
+  </scroll-view>
+</view>

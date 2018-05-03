@@ -1,0 +1,178 @@
+<!--pages/coupon/coupon.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <scroll-view scroll-y="true" class="scrollview">
+      <!--banner-->
+      <view class="swiper">
+        <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block wx:for-items="{{banner_url}}" wx:key="item.id">
+            <swiper-item>
+              <block wx:if="{{item}}">
+                <image src="{{item}}" mode="aspectFill" />
+              </block>
+              <block wx:else>
+                <image src="/resources/default.png" mode="aspectFill"></image>
+              </block>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+
+      <view class="weui-tab">
+        <!--navbar-->
+        <view class="weui-navbar">
+          <block wx:for="{{tabs}}" wx:key="*this">
+            <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+              <view class="weui-navbar__title">{{item}}</view>
+            </view>
+          </block>
+          <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+        </view>
+
+        <!--content-->
+        <view class="weui-tab__panel">
+          <!--餐饮-->
+          <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+            <view class="nav_section">
+              <block wx:for="{{food}}" wx:key="item.id">
+                <view class="nav_section_items">
+                  <!--image-->
+                  <view class="section_image" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <block wx:if="{{item.image_url}}">
+                      <image src="{{item.image_url}}" mode="aspectFill"></image>
+                    </block>
+                    <block wx:else>
+                      <image src="/resources/default.png" mode="aspectFill"></image>
+                    </block>
+                  </view>
+                  <!--content-->
+                  <view class="section_cont" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <view class="name">
+                      <text class="textview">{{item.subject}}</text>
+                    </view>
+                    <view class="price">
+                      <text class="textview">{{item.price}}</text>
+                    </view>
+                    <view class="active_time">
+                      <text class="textview">{{item.message}}</text>
+                    </view>
+                  </view>
+                  <!--button-->
+                  <view class="receive" bindtap="bookTap" data-aid="{{item.id}}">
+                    <view class="divide_line"></view>
+                    <button id="{{item.id}}" bindtap="get_btn">立即领取</button>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+          <!--娱乐-->
+          <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+            <view class="nav_section">
+              <block wx:for="{{entertainment}}" wx:key="item.id">
+                <view class="nav_section_items">
+                  <!--image-->
+                  <view class="section_image" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <block wx:if="{{item.image_url}}">
+                      <image src="{{item.image_url}}" mode="aspectFill"></image>
+                    </block>
+                    <block wx:else>
+                      <image src="/resources/default.png" mode="aspectFill"></image>
+                    </block>
+                  </view>
+                  <!--content-->
+                  <view class="section_cont" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <view class="name">
+                      <text class="textview">{{item.subject}}</text>
+                    </view>
+                    <view class="price">
+                      <text class="textview">{{item.price}}</text>
+                    </view>
+                    <view class="active_time">
+                      <text class="textview">{{item.message}}</text>
+                    </view>
+                  </view>
+                  <!--button-->
+                  <view class="receive" bindtap="bookTap" data-aid="{{item.id}}">
+                    <view class="divide_line"></view>
+                    <button id="{{item.id}}" bindtap="get_btn">立即领取</button>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+          <!--购物-->
+          <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+            <view class="nav_section">
+              <block wx:for="{{shopping}}" wx:key="item.id">
+                <view class="nav_section_items">
+                  <!--image-->
+                  <view class="section_image" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <block wx:if="{{item.image_url}}">
+                      <image src="{{item.image_url}}" mode="aspectFill"></image>
+                    </block>
+                    <block wx:else>
+                      <image src="/resources/default.png" mode="aspectFill"></image>
+                    </block>
+                  </view>
+                  <!--content-->
+                  <view class="section_cont" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <view class="name">
+                      <text class="textview">{{item.subject}}</text>
+                    </view>
+                    <view class="price">
+                      <text class="textview">{{item.price}}</text>
+                    </view>
+                    <view class="active_time">
+                      <text class="textview">{{item.message}}</text>
+                    </view>
+                  </view>
+                  <!--button-->
+                  <view class="receive" bindtap="bookTap" data-aid="{{item.id}}">
+                    <view class="divide_line"></view>
+                    <button id="{{item.id}}" bindtap="get_btn">立即领取</button>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+          <!--旅游-->
+          <view class="weui-tab__content" hidden="{{activeIndex != 3}}">
+            <view class="nav_section">
+              <block wx:for="{{travel}}" wx:key="item.id">
+                <view class="nav_section_items">
+                  <!--image-->
+                  <view class="section_image" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <block wx:if="{{item.image_url}}">
+                      <image src="{{item.image_url}}" mode="aspectFill"></image>
+                    </block>
+                    <block wx:else>
+                      <image src="/resources/default.png" mode="aspectFill"></image>
+                    </block>
+                  </view>
+                  <!--content-->
+                  <view class="section_cont" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <view class="name">
+                      <text class="textview">{{item.subject}}</text>
+                    </view>
+                    <view class="price">
+                      <text class="textview">{{item.price}}</text>
+                    </view>
+                    <view class="active_time">
+                      <text class="textview">{{item.message}}</text>
+                    </view>
+                  </view>
+                  <!--button-->
+                  <view class="receive" bindtap="bookTap" data-aid="{{item.id}}">
+                    <view class="divide_line"></view>
+                    <button id="{{item.id}}" bindtap="get_btn">立即领取</button>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

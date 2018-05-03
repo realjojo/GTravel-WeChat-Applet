@@ -1,0 +1,58 @@
+/* pages/user/edit_addr.wxss */
+
+.title{
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  padding: 6px 15px;
+}
+
+.title text{
+  font-size: 15px;
+  color: #6c6;
+}
+
+.hidden{
+  display: none;
+}
+
+.my-cell-switch {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.my-cell-switch:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid #d9d9d9;
+  color: #d9d9d9;
+  left: 15px;
+}
+
+.my-cell-switch:first-child:before {
+  display: none;
+}
+
+.delete {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  color: #6c6;
+}

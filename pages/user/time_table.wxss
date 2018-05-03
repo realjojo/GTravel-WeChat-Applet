@@ -1,0 +1,103 @@
+/* pages/user/time_table.wxss */
+
+page, .page, .page__bd {
+  height: 100%;
+}
+
+.my__hd {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100rpx;
+  align-items: center;
+}
+
+.page_title {
+  width: 400rpx;
+  background: white;
+  justify-content: center;
+  display: flex;
+  border-radius: 200rpx;
+  border: 1px solid #4169e1;
+  color: #4169e1;
+  padding: 10rpx;
+}
+
+.weui-tab__content {
+  border-bottom: 1px solid #ddd;
+}
+
+.content {
+  display: flex;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80rpx;
+  width: 50rpx;
+}
+
+.short_line {
+  width: 2px;
+  flex: 1;
+}
+
+.circle {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 100%;
+  background: #228b22;
+  margin: 5rpx;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 30rpx;
+  border-bottom: 1px solid #ddd;
+  flex: 1;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+}
+
+.tag {
+  border-radius: 7rpx;
+  color: white;
+  font-size: 11px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.tag1 {
+  background: #4169e1;
+}
+
+.tag2 {
+  background: #ff6347;
+}
+
+.normal {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.sta {
+  margin-left: 30rpx;
+}
+
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+}

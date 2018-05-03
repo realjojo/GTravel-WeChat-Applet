@@ -1,0 +1,12 @@
+<!--pages/user/help.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title">热门问题</view>
+    <view class="weui-cells weui-cells_after-title fs15">
+      <view id="{{index}}" class="weui-cell weui-cell_access" wx:for="{{question}}" wx:key="" bindtap='click'>
+        <view class="weui-cell__bd">{{item.question}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,84 @@
+<!--pages/route/route_planning.wxml-->
+<view class="container">
+  <view class="swiper_navbar fs15">
+    <view class="tab_item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="tabChange">单人模式</view>
+    <view class="tab_item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="tabChange">多人模式</view>
+  </view>
+
+  <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+    <swiper-item class="content">
+
+      <!--搜索框-->
+      <view class="single_route">
+        <view class="single_search">
+          <input id="single_s" type="text" placeholder="输入起点" focus="true" bindinput="myinput" value='{{ss}}'></input>
+          <input id="single_e" type="text" placeholder="输入终点" bindinput="myinput" value='{{ee}}'></input>
+        </view>
+        <view class="exchange">
+          <image src="/resources/exchange.png" mode="aspectFit" bindtap="exchange"></image>
+        </view>
+      </view>
+
+      <!--历史记录-->
+      <view class="search_history">
+        <icon type="waiting" color="#b2b2b2" size="20"></icon>
+        <text style="margin-left:30rpx;color:#b2b2b2;font-size:16px">暂无历史记录</text>
+      </view>
+      <view class="divide__line"></view>
+      <view class="clear_history">
+        <text>清空历史记录</text>
+      </view>
+
+      <view class="bottom">
+        <button id="single_btn" class="search_btn" bindtap="start_search">开始搜索</button>
+      </view>
+    </swiper-item>
+
+    <swiper-item class="content">
+      <!--搜索框-->
+      <view class="multi_route">
+        <view class="multi_search" style="display:flex;flex-direction: row;">
+          <input id="multi_s1" type="text" placeholder="输入起点" bindinput="myinput" value="{{multi_s1}}"></input>
+          <view class="add">
+            <image id="add" src="/resources/add.png" mode="aspectFit" bindtap="addClick"></image>
+          </view>
+        </view>
+
+        <view class="multi_search" style="display:{{hideview1 ? 'none' : 'flex'}};flex-direction: row;">
+          <input id="multi_s2" type="text" placeholder="输入起点" bindinput="myinput" value="{{multi_s2}}"></input>
+          <view class="add">
+            <image id="minus1" src="/resources/minus.png" mode="aspectFit" bindtap="minusClick1"></image>
+          </view>
+        </view>
+
+        <view class="multi_search" style="display:{{hideview2 ? 'none' : 'flex'}};flex-direction: row;">
+          <input id="multi_s3" type="text" placeholder="输入起点" bindinput="myinput" value="{{multi_s3}}"></input>
+          <view class="add">
+            <image id="minus2" src="/resources/minus.png" mode="aspectFit" bindtap="minusClick2"></image>
+          </view>
+        </view>
+
+        <view class="multi_search" style="display:flex;flex-direction: row;">
+          <input id="multi_e" type="text" placeholder="输入终点" bindinput="myinput"></input>
+          <view class="add">
+            <image src="" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+
+      <!--历史记录-->
+      <view class="search_history">
+        <icon type="waiting" color="#b2b2b2" size="20"></icon>
+        <text style="margin-left:30rpx;color:#b2b2b2;font-size:16px">暂无历史记录</text>
+      </view>
+      <view class="divide__line"></view>
+      <view class="clear_history">
+        <text>清空历史记录</text>
+      </view>
+
+      <view class="bottom">
+        <button id="multi_btn" class="search_btn" bindtap="start_search">开始搜索</button>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

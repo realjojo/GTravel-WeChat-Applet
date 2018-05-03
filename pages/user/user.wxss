@@ -1,0 +1,188 @@
+/* pages/user/user.wxss */
+
+.user_info {
+  background-color: #87c38e;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 3rpx 3rpx 3rpx 3rpx #ddd;
+}
+
+.user_info .user_pic {
+  width: 130rpx;
+  height: 130rpx;
+  padding: 10rpx;
+}
+
+.user_info .user_pic image {
+  width: 100%;
+  height: 100%;
+  border: 2rpx solid #2c7f36;
+  border-radius: 100%;
+}
+
+.user_info .user_account {
+  width: 350rpx;
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.user_info .login_register {
+  width: 350rpx;
+  padding-left: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.login_register text{
+  font-size: 15px;
+  color: white;
+}
+
+.user_info .user_account .user_name {
+  font-size: 18px;
+  padding: 10rpx 0;
+  color: white;
+}
+
+.user_info .user_account .user_phone {
+  font-size: 15px;
+  padding: 10rpx 0;
+  color: #ededed;
+}
+
+.user_info .user_manage {
+  width: 160rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user_info .user_manage image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.user_info .user_manage text {
+  font-size: 12px;
+  margin-left: 5rpx;
+  color: #090;
+}
+
+.my_order {
+  margin-top: 25rpx;
+  padding-bottom: 20rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.my_all_orders {
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 35rpx;
+}
+
+.my_all_orders text {
+  font-size: 13px;
+}
+
+.my_all_orders image {
+  width: 25rpx;
+  height: 25rpx;
+}
+
+.divide_line {
+  height: 1px;
+  background-color: #ddd;
+  margin: 0 0 0 30rpx;
+}
+
+.my_order_items {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.my_order_items view {
+  width: 150rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.my_order_items image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.my_order_items text {
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.other_info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25rpx;
+  background-color: white;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.other_info_items {
+  display: flex;
+  flex-direction: column;
+}
+
+.other_info_items .items {
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 35rpx;
+}
+
+.items text {
+  width: 565rpx;
+  font-size: 13px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.right_arrow {
+  width: 25rpx;
+  height: 25rpx;
+}
+
+.foot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+  height: 200rpx;
+  font-size: 13px;
+}
+
+.foot text {
+  color: orange;
+  text-decoration-line: underline;
+}

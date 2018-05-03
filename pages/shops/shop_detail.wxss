@@ -1,0 +1,231 @@
+/* pages/shops/shop_detail.wxss */
+
+.mypage {
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: cloumn;
+  height: 100%;
+}
+
+.flex__cl {
+  height: 100%;
+}
+
+.shop_title {
+  height: 180rpx;
+  background: #2c2c2c;
+  display: flex;
+  flex-direction: column;
+}
+
+.shop_desc {
+  display: flex;
+  height: 120rpx;
+  padding-top: 5rpx;
+}
+
+.shop_desc .pic {
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 30rpx;
+  border-radius: 100%;
+  border: 1px solid white;
+}
+
+.shop_title text {
+  font-size: 14px;
+  color: white;
+}
+
+.coupon {
+  height: 60rpx;
+  display: flex;
+  margin: 0 20rpx;
+  align-items: center;
+  border-top: 1px dotted #ddd;
+}
+
+.coupon text {
+  width: 600rpx;
+  margin: 0 20rpx;
+}
+
+.coupon .coupon_icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.coupon .right {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.menu__page {
+  display: flex;
+  height: 77%;
+}
+
+.types {
+  width: 150rpx;
+  display: flex;
+  flex-direction: column;
+  background: #ececec;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100rpx;
+  width: 150rpx;
+  background: #f4f4f4;
+  font-size: 15px;
+  border-bottom: 1rpx dashed #ddd;
+}
+
+.selected {
+  background-color: white;
+}
+
+.foodList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.foodList .title {
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 15px;
+  margin: 20rpx 15rpx;
+  border-left: 4px solid #ffd161;
+  padding-left: 20rpx;
+}
+
+.food {
+  display: flex;
+  align-items: center;
+  height: 160rpx;
+  border-bottom: 1rpx solid #ddd;
+  background: white;
+  padding-right: 20rpx;
+}
+
+.food .img {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 20rpx;
+}
+
+.food-info {
+  width: 290rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20rpx 0;
+}
+
+.food .name {
+  font-size: 16px;
+}
+
+.food .sales {
+  font-size: 14px;
+  color: #888;
+}
+
+.food .price {
+  display: flex;
+}
+
+.food-numb {
+  width: 130rpx;
+  height: 135rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  line-height: 40rpx;
+  font-size: 15px;
+}
+
+.food-numb .add, .food-numb .remove {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 30rpx;
+}
+
+.food-numb .add {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 15rpx;
+}
+
+.food-numb .remove {
+  margin-right: 15rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.footer {
+  display: flex;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 100rpx;
+  background: white;
+}
+
+.footer .img {
+  position: absolute;
+  height: 90rpx;
+  width: 90rpx;
+  border-radius: 100rpx;
+  left: 30rpx;
+  top: -45rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer .howMuch {
+  position: relative;
+  flex: 1;
+  line-height: 100rpx;
+  padding-left: 140rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer .cost {
+  margin-top: 10rpx;
+  color: #ff8692;
+  line-height: 45rpx;
+  height: 45rpx;
+  width: 100rpx;
+  font-size: 16px;
+}
+
+.footer .num {
+  font-size: 14px;
+  height: 35rpx;
+  line-height: 35rpx;
+  color: #888;
+  margin-bottom: 10rpx;
+}
+
+.footer .pay {
+  width: 200rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: white;
+  background: #ccc;
+}
+
+.footer.active .pay {
+  background: #ffd161;
+  color: black;
+}

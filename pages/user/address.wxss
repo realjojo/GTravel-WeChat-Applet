@@ -1,0 +1,92 @@
+/* pages/user/address.wxss */
+
+.addr_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.address {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  justify-content: space-between;
+  padding: 0 30rpx;
+}
+
+.addr_content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80rpx;
+}
+
+.choose{
+  display: flex;
+  width: 150rpx;
+}
+
+.icon {
+  margin-right: 30rpx;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.sex {
+  font-size: 12px;
+  width: 100rpx;
+  text-align: center;
+}
+
+.phone {
+  width: 240rpx;
+  text-align: center;
+  font-size: 14px;
+}
+
+.default {
+  width: 60rpx;
+  margin-left: 20rpx;
+}
+
+.default view {
+  background-color: #6c6;
+  color: white;
+  font-size: 11px;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.edit {
+  display: flex;
+  align-items: center;
+}
+
+.edit image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.add {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
+
+.add image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.add text {
+  margin-left: 20rpx;
+  color: #6c6;
+}

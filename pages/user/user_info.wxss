@@ -1,0 +1,77 @@
+/* pages/user/user_info.wxss */
+
+.info_item {
+  height: 80rpx;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 25rpx;
+}
+
+.info_title {
+  width: 200rpx;
+  font-size: 13px;
+}
+
+.info_content {
+  color: #888;
+  width: 475rpx;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20rpx 0 0;
+  font-size: 13px;
+}
+
+.right_arrow {
+  width: 25rpx;
+  height: 25rpx;
+}
+
+.avator {
+  height: 100rpx;
+  background-color: white;
+  padding: 25rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+  border-top: 1px solid #ddd;
+}
+
+.avator text {
+  width: 200rpx;
+  font-size: 13px;
+}
+
+.avator_image {
+  width: 475rpx;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20rpx 0 0;
+}
+
+.avator_image image {
+  width: 110rpx;
+  height: 110rpx;
+  border: 2rpx solid #2c7f36;
+  border-radius: 100%;
+}
+
+.logout {
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  width: 700rpx;
+  height: 70rpx;
+  background-color: #6c6;
+  border-radius: 8rpx;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}

@@ -1,0 +1,16 @@
+/* pages/user/login.wxss */
+
+.content {
+  margin-top: 35rpx;
+}
+
+.login_btn {
+  width: 400rpx;
+  background-color: #87c38e;
+  color: white;
+  font-size: 15px;
+}
+
+.hidden {
+  display: none;
+}

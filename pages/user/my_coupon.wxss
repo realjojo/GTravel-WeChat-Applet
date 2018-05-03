@@ -1,0 +1,92 @@
+/* pages/user/my_coupon.wxss */
+
+.page__bd {
+  padding-bottom: 0;
+}
+
+.nav_section {
+  width: 100%;
+}
+
+.items {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 10rpx;
+  padding: 20rpx 20rpx;
+  margin: 20rpx 20rpx 0 20rpx;
+  position: relative;
+  box-shadow: 2rpx 2rpx 2rpx 2rpx #ededed;
+}
+
+.items .image {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.items .image image {
+  width: 100%;
+  height: 100%;
+}
+
+.items .content {
+  width: 318rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.items .content .name {
+  font-size: 14px;
+  color: #353535;
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  padding: 0 0 5rpx 0;
+}
+
+.textview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.items .content .price {
+  font-size: 15px;
+  color: #e64340;
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.items .content .active_time {
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  padding: 10rpx 0 0 0;
+}
+
+.items .receive {
+  width: 172rpx;
+  display: flex;
+  align-items: center;
+}
+
+.items .divide_line {
+  width: 2rpx;
+  height: 140rpx;
+  margin: 0 20rpx 0 0;
+  border-right: 1rpx dashed #888;
+}
+
+.items .receive button {
+  width: 150rpx;
+  height: 55rpx;
+  background-color: #87c38e;
+  color: white;
+  border-radius: 30rpx;
+  font-size: 11px;
+  text-align: center;
+}

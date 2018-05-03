@@ -1,0 +1,18 @@
+<!--pages/user/table_detail.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="list">
+      <view class="item" wx:for="{{table}}" wx:key="">
+        <text class="tag{{item.dire=='上行' ? ' up' : ' down'}}">{{item.dire}}</text>
+        <text class="sta">{{item.station}}</text>
+        <image src="/resources/to.png"></image>
+        <text class="sta">{{item.final_st}}</text>
+        <text class="arr_time">{{item.arr_time_str}}</text>
+      </view>
+    </view>
+    <view class="page__ft foot">
+      <image src="/resources/GZ_gray.png" style="width: 60rpx; height: 60rpx;"></image>
+      <view style='color:#bfbfbf'>广州地铁</view>
+    </view>
+  </view>
+</view>

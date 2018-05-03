@@ -1,0 +1,65 @@
+<!--pages/user/user.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <!--用户信息-->
+    <view class="user_info">
+      <view class="user_pic" bindtap="userPic">
+        <block wx:if="{{userPicPath}}">
+          <image src="{{userPicPath}}" mode="aspectFill"></image>
+        </block>
+        <block wx:else>
+          <image src="/resources/default_user_img.png" mode="aspectFill"></image>
+        </block>
+      </view>
+      <view class="user_account">
+        <block wx:if="{{isLogin == 'true'}}">
+          <view class="user_name">
+            <text>{{userName}}</text>
+          </view>
+          <view class="user_phone">
+            <text>{{userPhone}}</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="login_register">
+            <text bindtap="login">登录 /</text>
+            <text style="margin-left:8rpx" bindtap="register">注册</text>
+          </view>
+        </block>
+      </view>
+      <view class="user_manage" bindtap="userManage">
+        <image src="/resources/setting.png" mode="aspectFill"></image>
+        <text>账号管理</text>
+      </view>
+    </view>
+    <!--我的订单-->
+    <view class="my_order">
+      <view class="my_all_orders" id="0" bindtap="all_orders">
+        <text>所有订单</text>
+        <image src="/resources/right_arrow.png" mode="aspectFill"></image>
+      </view>
+      <view class="divide_line"></view>
+      <view class="my_order_items">
+        <view wx:for="{{myOrderItems}}" bindtap="switchTab" id="{{item.id}}">
+          <image src="{{item.image}}" mode="aspectFill"></image>
+          <text>{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+    <!--其他信息-->
+    <view class="other_info">
+      <view class="other_info_items" wx:for="{{otherInfoItems}}">
+        <view class="items" id="{{item.id}}" bindtap="navigate">
+          <image class="icon" src="{{item.image}}" mode="aspectFill"></image>
+          <text>{{item.text}}</text>
+          <image class="right_arrow" src="/resources/right_arrow.png" mode="aspectFill"></image>
+        </view>
+        <view class="{{item.divide}}"></view>
+      </view>
+    </view>
+    <!--客服电话-->
+    <view class="foot">©GreenTravel 客服电话：
+      <text bindtap="phoneCall">{{phoneNumber}}</text>
+    </view>
+  </view>
+</view>
