@@ -121,7 +121,7 @@
         <cover-view class="content" wx:for="{{rr1}}" wx:key="">
           <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
           <cover-view class="text column">
-            <cover-view>步行1380米到达 {{item.start_sta}}</cover-view>
+            <cover-view>步行530米到达 {{item.start_sta}}</cover-view>
             <cover-view style='color:#888'>从A口(西北口)入站</cover-view>
           </cover-view>
         </cover-view>
@@ -182,7 +182,7 @@
         <cover-view class="content" wx:for="{{rr1}}" wx:key="">
           <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
           <cover-view class="text column">
-            <cover-view>步行1380米到达 {{item.end_sta}}</cover-view>
+            <cover-view>步行540米到达 {{item.end_sta}}</cover-view>
             <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
           </cover-view>
         </cover-view>
@@ -253,7 +253,7 @@
         <cover-view class="content" wx:for="{{rr2}}" wx:key="">
           <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
           <cover-view class="text column">
-            <cover-view>步行1380米到达 {{item.end_sta}}</cover-view>
+            <cover-view>步行540米到达 {{item.end_sta}}</cover-view>
             <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
           </cover-view>
         </cover-view>
@@ -324,7 +324,7 @@
         <cover-view class="content" wx:for="{{rr3}}" wx:key="">
           <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
           <cover-view class="text column">
-            <cover-view>步行1380米到达 {{item.end_sta}}</cover-view>
+            <cover-view>步行540米到达 {{item.end_sta}}</cover-view>
             <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
           </cover-view>
         </cover-view>
@@ -416,7 +416,7 @@
     <cover-view class="content" wx:for="{{rr}}" wx:key="">
       <cover-image class="cover_img" src="/resources/walk_icon.png"></cover-image>
       <cover-view class="text column">
-        <cover-view>步行1380米到达 {{item.end_sta}}</cover-view>
+        <cover-view>步行540米到达 {{item.end_sta}}</cover-view>
         <cover-view style='color:#888'>从A口(西北口)出站</cover-view>
       </cover-view>
     </cover-view>

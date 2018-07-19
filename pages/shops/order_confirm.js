@@ -86,6 +86,9 @@ Page({
 
   order_pay: function () {
     if (this.data.hasAddr == true) {
+      wx.showLoading({
+        title: '请等待',
+      })
       wx.request({
         url: service + '/order/submit',
         method: 'POST',
@@ -106,36 +109,66 @@ Page({
         success: function (res) {
           console.log(res)
           if (res.statusCode == 200) {
-            wx.request({
-              url: service + '/order/getprepayid',
-              method: 'POST',
-              data: {
-                user_id: app.globalData.userInfo.uid,
-                token: app.globalData.userInfo.token,
-                order_no: res.data.order_no
-              },
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
+            var order_no = res.data.order_no;
+            wx.login({
               success: function (res) {
                 console.log(res)
-                if (res.statusCode == 200) {
-                  wx.requestPayment({
-                    'timeStamp': res.data.timestamp,
-                    'nonceStr': res.data.noncestr,
-                    'package': "prepay_id=" + res.data.prepayid,
-                    'signType': 'MD5',
-                    'paySign': res.data.sign,
-                    'success': function (res) {
-                      console.log(res)
+                if (res.code) {
+                  wx.request({
+                    url: service + '/order/getprepayidjs',
+                    method: 'POST',
+                    data: {
+                      user_id: app.globalData.userInfo.uid,
+                      token: app.globalData.userInfo.token,
+                      order_no: order_no,
+                      code: res.code
                     },
-                    'fail': function (res) {
+                    header: {
+                      'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (res) {
                       console.log(res)
+                      wx.hideLoading();
+                      if (res.statusCode == 200) {
+                        wx.requestPayment({
+                          'timeStamp': res.data.timeStamp,
+                          'nonceStr': res.data.nonceStr,
+                          'package': res.data.package,
+                          'signType': res.data.signType,
+                          'paySign': res.data.paySign,
+                          'success': function (res) {
+                            console.log(res)
+                          },
+                          'fail': function (res) {
+                            console.log(res)
+                          }
+                        })
+                      } else {
+                        wx.showToast({
+                          title: '下单失败',
+                          image: '/resources/fail.png'
+                        })
+                        console.log('获取预支付字段失败！')
+                      }
                     }
+                  });
+                } else {
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '下单失败',
+                    image: '/resources/fail.png'
                   })
+                  console.log('登录失败！' + res.errMsg)
                 }
               }
+            });
+          } else {
+            wx.hideLoading();
+            wx.showToast({
+              title: '下单失败',
+              image: '/resources/fail.png'
             })
+            console.log('下单失败！')
           }
         }
       })

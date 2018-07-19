@@ -137,7 +137,7 @@ Page({
               url: service + '/route/single',
               method: 'POST',
               data: {
-                User_id: app.globalData.userInfo.uid, //"9sg171107104514",
+                User_id: app.globalData.userInfo.uid,
                 Start: start,
                 End: end1
               },

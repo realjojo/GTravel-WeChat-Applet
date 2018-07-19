@@ -59,7 +59,7 @@ Page({
 
   login: function (e) {
     wx.showLoading({
-      title: '',
+      title: '登录中',
     })
     wx.request({
       url: service + '/users/user_login',

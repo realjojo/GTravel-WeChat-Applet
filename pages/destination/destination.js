@@ -260,9 +260,5 @@ Page({
         })
         break;
     }
-  },
-
-  onLoad: function (options) {
-
   }
 })

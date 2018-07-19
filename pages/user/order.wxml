@@ -47,7 +47,7 @@
                 <button class="{{item.show ? 'btn1':'hidden__item'}}" bindtap='cancel' data-order_no="{{item.order_no}}" data-curpage="all">取消订单</button>
               </view>
               <view>
-                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}" data-order_no="{{item.order_no}}">{{item.btn}}</button>
+                <button class="btn2" bindtap='confirm' data-order_no="{{item.order_no}}" data-txt="{{item.btn}}">{{item.btn}}</button>
               </view>
             </view>
           </view>
@@ -91,7 +91,7 @@
                 <button class="{{item.show ? 'btn1':'hidden__item'}}" bindtap='cancel' data-order_no="{{item.order_no}}" data-curpage="ordered">取消订单</button>
               </view>
               <view>
-                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}">{{item.btn}}</button>
+                <button class="btn2" bindtap='confirm' data-order_no="{{item.order_no}}" data-txt="{{item.btn}}">{{item.btn}}</button>
               </view>
             </view>
           </view>
@@ -135,7 +135,7 @@
                 <button class="{{item.show ? 'btn1':'hidden__item'}}" bindtap='cancel' data-order_no="{{item.order_no}}" data-curpage="payed">取消订单</button>
               </view>
               <view>
-                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}">{{item.btn}}</button>
+                <button class="btn2" bindtap='confirm' data-order_no="{{item.order_no}}" data-txt="{{item.btn}}">{{item.btn}}</button>
               </view>
             </view>
           </view>
@@ -175,11 +175,8 @@
               </view>
             </view>
             <view class="btns">
-              <view style='margin-right:30rpx'>
-                <button class="{{item.show ? 'btn1':'hidden__item'}}" bindtap='cancel' data-order_no="{{item.order_no}}" data-curpage="topick">取消订单</button>
-              </view>
               <view>
-                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}">{{item.btn}}</button>
+                <button class="btn2" bindtap='confirm' data-order_no="{{item.order_no}}" data-txt="{{item.btn}}">{{item.btn}}</button>
               </view>
             </view>
           </view>
@@ -219,11 +216,8 @@
               </view>
             </view>
             <view class="btns">
-              <view style='margin-right:30rpx'>
-                <button class="btn1" bindtap='evaluation' data-order_no="{{item.order_no}}">评价此单</button>
-              </view>
               <view>
-                <button class="btn2" bindtap='confirm' data-txt="{{item.btn}}">{{item.btn}}</button>
+                <button class="btn2" bindtap='evaluation' data-order_no="{{item.order_no}}">评价此单</button>
               </view>
             </view>
           </view>

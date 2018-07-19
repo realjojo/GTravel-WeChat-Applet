@@ -84,83 +84,111 @@ Page({
 
   cancel: function (e) {
     var that = this;
-    console.log(e)
-    wx.showModal({
-      title: '取消订单',
-      content: '确认取消该订单吗？',
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-          wx.request({
-            url: service + '/order/usercancel',
-            method: 'POST',
-            data: {
-              user_id: app.globalData.userInfo.uid,
-              token: app.globalData.userInfo.token,
-              order_no: e.currentTarget.dataset.order_no
-            },
-            header: {
-              'content-type': 'application/x-www-form-urlencoded'
-            },
-            success: function (res) {
-              console.log(res)
-              if (res.statusCode == 200) {
-                wx.showToast({
-                  title: '订单取消成功',
-                  image: '/resources/success.png',
-                  complete: function () {
-                    that.getOrderList(e.currentTarget.dataset.curpage)
+    switch (e.currentTarget.dataset.curpage) {
+      case "ordered":
+        wx.showModal({
+          title: '取消订单',
+          content: '确认取消该订单吗？',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              wx.request({
+                url: service + '/order/usercancel',
+                method: 'POST',
+                data: {
+                  user_id: app.globalData.userInfo.uid,
+                  token: app.globalData.userInfo.token,
+                  order_no: e.currentTarget.dataset.order_no
+                },
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded'
+                },
+                success: function (res) {
+                  console.log(res)
+                  if (res.statusCode == 200) {
+                    wx.showToast({
+                      title: '订单取消成功',
+                      image: '/resources/success.png',
+                      complete: function () {
+                        that.getOrderList(e.currentTarget.dataset.curpage)
+                      }
+                    })
                   }
-                })
-              }
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
             }
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
+          }
+        })
+        break;
+      case "payed":
+        //todo
+        break;
+    }
   },
 
   confirm: function (e) {
     switch (e.currentTarget.dataset.txt) {
       case "立即付款":
-        wx.request({
-          url: service + '/order/getprepayid',
-          method: 'POST',
-          data: {
-            user_id: app.globalData.userInfo.uid,
-            token: app.globalData.userInfo.token,
-            order_no: e.currentTarget.dataset.order_no
-          },
-          header: {
-            'content-type': 'application/x-www-form-urlencoded'
-          },
+        wx.showLoading({
+          title: '请等待',
+        })
+        wx.login({
           success: function (res) {
             console.log(res)
-            if (res.statusCode == 200) {
-              wx.requestPayment({
-                'timeStamp': res.data.timestamp,
-                'nonceStr': res.data.noncestr,
-                'package': "prepay_id=" + res.data.prepayid,
-                'signType': 'MD5',
-                'paySign': res.data.sign,
-                'success': function (res) {
-                  console.log(res)
+            if (res.code) {
+              wx.request({
+                url: service + '/order/getprepayidjs',
+                method: 'POST',
+                data: {
+                  user_id: app.globalData.userInfo.uid,
+                  token: app.globalData.userInfo.token,
+                  order_no: e.currentTarget.dataset.order_no,
+                  code: res.code
                 },
-                'fail': function (res) {
-                  console.log(res)
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded'
                 },
-                'complete': function (res) {
+                success: function (res) {
                   console.log(res)
+                  wx.hideLoading();
+                  if (res.statusCode == 200) {
+                    wx.requestPayment({
+                      'timeStamp': res.data.timeStamp,
+                      'nonceStr': res.data.nonceStr,
+                      'package': res.data.package,
+                      'signType': res.data.signType,
+                      'paySign': res.data.paySign,
+                      'success': function (res) {
+                        console.log(res)
+                      },
+                      'fail': function (res) {
+                        console.log(res)
+                      }
+                    })
+                  } else {
+                    wx.showToast({
+                      title: '下单失败',
+                      image: '/resources/fail.png'
+                    })
+                    console.log('获取预支付字段失败！')
+                  }
                 }
               })
+            } else {
+              wx.hideLoading();
+              wx.showToast({
+                title: '下单失败',
+                image: '/resources/fail.png'
+              })
+              console.log('登录失败！' + res.errMsg)
             }
           }
         })
         break;
       case "取货二维码":
-      //todo
+        //todo
         break;
     }
   },
@@ -226,6 +254,7 @@ Page({
                 case 2:
                   orderList[i].status = "待发货";
                   orderList[i].btn = "催促发货";
+                  orderList[i].show = true;
                   break;
                 case 3:
                   if (orderList[i].receive_method == 0) {
